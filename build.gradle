@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group = 'ge.devel.ocpp'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+//    maven { url 'https://jitpack.io' }
+//    maven { url 'https://repo.spring.io/libs-release' }
+//    maven { url 'https://maven.teamdev.com/repository/products' }
+}
+ext {
+    springVersion = '2.5.4'
+    lombokVersion = '1.18.20'
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-data-rest:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+    compileOnly group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+    compileOnly group: 'io.springfox', name: 'springfox-core', version: '3.0.0'
+    compileOnly group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+    compileOnly group: 'org.java-websocket', name: 'Java-WebSocket', version: '1.5.1'
+
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
