@@ -16,10 +16,10 @@ pipeline {
     }
     stage('Build Docker Image') {
         steps {
-            node {
+            node('docker build') {
                 checkout scm
                 def customImage = docker.build("spring_ocpp_16_j:${env.BUILD_ID}")
-                customImage.push()
+
             }
         }
     }
