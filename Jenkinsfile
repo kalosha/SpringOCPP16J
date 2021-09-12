@@ -12,11 +12,16 @@ pipeline {
 //         }
 //     }
     stage('Compile'){
-        steps{
+        steps {
             script {
                 sh './gradlew clean'
                 sh './gradlew build'
             }
+        }
+    }
+    stage('Build Docker Image') {
+        steps {
+            sh 'docker build -t spring_oxpp_16_j  -f Dockerfile .'
         }
     }
   }
