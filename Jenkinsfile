@@ -21,7 +21,9 @@ pipeline {
     }
     stage('Build Docker Image') {
         steps {
-            def app =  docker.build("spring_oxpp_16_j:${env.BUILD_ID}")
+            node ('main'){
+                def app =  docker.build("spring_oxpp_16_j:${env.BUILD_ID}")
+            }
         }
     }
   }
