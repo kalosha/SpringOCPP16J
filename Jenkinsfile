@@ -6,11 +6,6 @@ pipeline {
             echo 'Hi EMAP JMP!!!'
         }
     }
-//     stage('git  clean & clone') {
-//         steps {
-//             git branch: 'main',  url: 'https://github.com/kalosha/SpringOCPP16J.git'
-//         }
-//     }
     stage('Compile'){
         steps {
             script {
@@ -21,7 +16,7 @@ pipeline {
     }
     stage('Build Docker Image') {
         steps {
-            sh 'docker build -t spring_ocpp_16_j -f Dockerfile .'
+            docker.build("spring_ocpp_16_j:${env.BUILD_ID}")
         }
     }
   }
