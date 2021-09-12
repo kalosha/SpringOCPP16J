@@ -1,5 +1,5 @@
 pipeline {
-  agent { dockerfile true }
+  agent any
   stages {
     stage('Hello JMP') {
         steps {
@@ -21,6 +21,14 @@ pipeline {
                     def dImage = docker.build("spring_ocpp_16_j:${env.BUILD_ID}")
                 }
             }
+        }
+    }
+    stage('Docker publish') {
+         steps {
+             withCredentials([usernamePassword(credentialsId: 'docker-hub-login', passwordVariable: 'secret', usernameVariable: 'login')]) {
+                sh "docker login -u ${login} -p ${secret}"
+                sh "docker push spring_ocpp_16_j:${env.BUILD_ID}"
+             }
         }
     }
   }
