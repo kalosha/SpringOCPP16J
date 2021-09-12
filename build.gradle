@@ -31,6 +31,10 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-rest:${springVersion}"
     implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
 
+    implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
+    implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
+    implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
+
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
     compileOnly group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
