@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { dockerfile true }
   stages {
     stage('Hello JMP') {
         steps {
@@ -16,7 +16,11 @@ pipeline {
     }
     stage('Build Docker Image') {
         steps {
-            docker.build("spring_ocpp_16_j:${env.BUILD_ID}")
+            node {
+                checkout scm
+                def customImage = docker.build("spring_ocpp_16_j:${env.BUILD_ID}")
+                customImage.push()
+            }
         }
     }
   }
