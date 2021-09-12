@@ -18,7 +18,7 @@ pipeline {
         steps {
             node('master') {
                 script {
-                    def dImage = docker.build("spring_ocpp_16_j:${env.BUILD_ID}")
+                    def dImage = docker.build("kalosha/spring_ocpp_16_j:${env.BUILD_ID}")
                 }
             }
         }
