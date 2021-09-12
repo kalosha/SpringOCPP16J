@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Build Docker Image') {
         steps {
-            node('docker build') {
+            node('master') {
                 script {
                     def dImage = docker.build("spring_ocpp_16_j:${env.BUILD_ID}")
                 }
