@@ -1,55 +1,80 @@
 plugins {
-    id 'java'
-    id 'idea'
+    id 'base'
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group = 'ge.devel.ocpp'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+description = """ SpringBoot OCPP 1.6 JSON """
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-//    maven { url 'https://jitpack.io' }
-//    maven { url 'https://repo.spring.io/libs-release' }
-//    maven { url 'https://maven.teamdev.com/repository/products' }
-}
 ext {
-    springVersion = '2.5.4'
+    springVersion = '5.3.9'
+    springBootVersion = '2.5.4'
     lombokVersion = '1.18.20'
 }
 
-dependencies {
-    implementation "org.springframework.boot:spring-boot-starter-data-rest:${springVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
 
-    implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
-    implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
-    implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
+allprojects {
+    group = 'ge.devel.ocpp'
+    version = '0.0.1-SNAPSHOT'
 
-    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    apply plugin: 'java'
+    apply plugin: 'idea'
 
-    compileOnly group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
-    compileOnly group: 'io.springfox', name: 'springfox-core', version: '3.0.0'
-    compileOnly group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 
-    compileOnly group: 'org.java-websocket', name: 'Java-WebSocket', version: '1.5.1'
-
-
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-
-    testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
 }
 
-test {
-    useJUnitPlatform()
+subprojects {
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
+    dependencies {
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        implementation "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        testImplementation 'junit:junit:4.12'
+    }
+}
+
+project('app') {
+
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+
+        testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    }
+}
+
+project('ws:ws-api') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+
+    dependencies {
+        implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
+        implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
+        implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
+    }
+}
+
+project('ws:ws-impl') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+
+    dependencies {
+        implementation project(':ws:ws-api')
+
+        implementation "org.springframework:spring-context:${springVersion}"
+
+        implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
+        implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
+        implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
+
+    }
 }
