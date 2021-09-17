@@ -15,7 +15,7 @@ public class SpringOcpp16JApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         log.info("############################## ---> OCPP 1.6 JSON <--- ##############################");
     }
 }
