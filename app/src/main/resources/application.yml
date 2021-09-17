@@ -24,3 +24,8 @@ ge:
         port: 8016
         host: localhost
         endpoint: ocpp16j
+
+
+      interval:
+        seconds:
+          heartbeat: 100
