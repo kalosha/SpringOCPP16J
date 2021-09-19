@@ -49,13 +49,14 @@ subprojects {
 }
 
 project('app') {
+//    apply plugin: 'java'
+//    apply plugin: 'application'
+    apply plugin: 'org.springframework.boot'
 
     dependencies {
-        implementation project(':ws:ws-impl')
-
+        project(':ws:ws-impl')
 
         implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
-
     }
 
     jar {

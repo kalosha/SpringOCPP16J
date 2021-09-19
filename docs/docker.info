@@ -1,0 +1,16 @@
+###### DOCKER #########
+# create docker container
+docker build -t kalosha/spring_ocpp_16_j -f Dockerfile .
+
+# run docker container
+docker run --rm -it -p 9090:9090 -p 8016:8016 kalosha/spring_ocpp_16_j
+docker run --rm -it -p 9090:9090 -p 8016:8016 -e JAVA_OPTS="-Xmx100m" --name s-p kalosha/spring_ocpp_16_j
+
+# list of images
+docket ps
+
+# inspect image by name
+docker inspect {image-name}
+
+# delete image
+docker rmi {image-name}
