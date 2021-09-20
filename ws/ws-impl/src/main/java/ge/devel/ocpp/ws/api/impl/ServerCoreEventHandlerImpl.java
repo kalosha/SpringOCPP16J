@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.security.SecureRandom;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -70,7 +71,8 @@ public class ServerCoreEventHandlerImpl extends AbstractRequestHandlerValidator 
         SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
         log.info("StartTransactionRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
 
-        return new StartTransactionConfirmation(new IdTagInfo(AuthorizationStatus.Accepted), ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE/2) + 1));
+
+        return new StartTransactionConfirmation(new IdTagInfo(AuthorizationStatus.Accepted), new SecureRandom().nextInt());
     }
 
     @Override

@@ -4,9 +4,9 @@ import eu.chargetime.ocpp.model.SessionInformation;
 
 import java.util.StringJoiner;
 
-public abstract class OcppToStringDecorator {
+public interface OcppToStringDecorator {
 
-    public static String toString(SessionInformation value) {
+    static String toString(SessionInformation value) {
         return new StringJoiner(", ", "{", "}")
                 .add(new StringJoiner("=").add("Identifier").add(value.getIdentifier()).toString())
                 .add(new StringJoiner("=").add("Address").add(value.getAddress().toString()).toString())

@@ -2,6 +2,7 @@ plugins {
     id 'base'
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "org.sonarqube" version "3.3"
 }
 
 description = """ SpringBoot OCPP 1.6 JSON """
@@ -12,6 +13,13 @@ ext {
     lombokVersion = '1.18.20'
 }
 
+sonarqube {
+    properties {
+        property 'sonar.projectKey', 'SpringOCPP16J'
+        property 'sonar.login', 'c1341dbd968034424de9254b2300adc1daea4104'
+        property 'sonar.host.url', 'http://localhost:9000'
+    }
+}
 
 allprojects {
     group = 'ge.devel.ocpp'
