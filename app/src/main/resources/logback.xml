@@ -1,0 +1,97 @@
+<configuration>
+
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %p %m%n" />
+    <property name="APP_LOG_ROOT" value="./log"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="applicationLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${APP_LOG_ROOT}/application.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${APP_LOG_ROOT}/application-%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>15</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="aopLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${APP_LOG_ROOT}/application-aop.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${APP_LOG_ROOT}/application-aop-%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>15</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="springLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${APP_LOG_ROOT}/spring-framework.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${APP_LOG_ROOT}/spring-framework-%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>15</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="hibernateLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${APP_LOG_ROOT}/database.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${APP_LOG_ROOT}/database-%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>15</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <logger name="ge.devel.ocpp.ws.api.impl" level="DEBUG">
+        <appender-ref ref="applicationLog" />
+        <appender-ref ref="console" />
+    </logger>
+
+    <logger name="ge.devel" level="INFO">
+        <appender-ref ref="aopLog" />
+        <appender-ref ref="console" />
+    </logger>
+
+    <logger name="org.springframework" level="DEBUG">
+        <appender-ref ref="springLog" />
+        <appender-ref ref="console" />
+    </logger>
+
+    <logger name="org.hibernate" level="DEBUG">
+        <appender-ref ref="hibernateLog" />
+        <appender-ref ref="console" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="applicationLog" />
+        <appender-ref ref="console" />
+    </root>
+
+</configuration>
