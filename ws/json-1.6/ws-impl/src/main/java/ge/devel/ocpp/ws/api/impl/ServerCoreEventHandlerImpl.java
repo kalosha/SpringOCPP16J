@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import java.security.SecureRandom;
 import java.time.ZonedDateTime;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 @Component("ServerCoreEventHandler")

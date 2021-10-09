@@ -1,4 +1,5 @@
 rootProject.name = 'SpringOCPP16J'
-include 'ws:ws-api', 'ws:ws-impl'
+include 'ws:json-1.6:ws-api', 'ws:json-1.6:ws-impl'
 include 'app'
+include 'soap'
 

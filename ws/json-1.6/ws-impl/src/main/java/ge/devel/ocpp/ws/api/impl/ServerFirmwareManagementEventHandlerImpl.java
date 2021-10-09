@@ -2,9 +2,6 @@ package ge.devel.ocpp.ws.api.impl;
 
 
 import eu.chargetime.ocpp.feature.profile.ServerFirmwareManagementEventHandler;
-import eu.chargetime.ocpp.model.core.AuthorizationStatus;
-import eu.chargetime.ocpp.model.core.AuthorizeConfirmation;
-import eu.chargetime.ocpp.model.core.IdTagInfo;
 import eu.chargetime.ocpp.model.firmware.DiagnosticsStatusNotificationConfirmation;
 import eu.chargetime.ocpp.model.firmware.DiagnosticsStatusNotificationRequest;
 import eu.chargetime.ocpp.model.firmware.FirmwareStatusNotificationConfirmation;

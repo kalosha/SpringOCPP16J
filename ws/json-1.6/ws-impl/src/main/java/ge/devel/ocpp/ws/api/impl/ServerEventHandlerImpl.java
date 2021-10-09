@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component("ServerEventHandler")
 public class ServerEventHandlerImpl extends AbstractRequestHandlerValidator implements ServerEventHandler, ServerEvents {
 
-    @Value("${ge.devel.ocpp.server.endpoint}")
+    @Value("${ge.devel.ocpp.json.server.endpoint}")
     private String endpoint;
 
     private final Map<UUID, SessionInformationDecorator> sessions = new ConcurrentHashMap<>();

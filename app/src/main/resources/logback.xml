@@ -71,22 +71,18 @@
 
     <logger name="ge.devel.ocpp.ws.api.impl" level="DEBUG">
         <appender-ref ref="applicationLog" />
-        <appender-ref ref="console" />
     </logger>
 
-    <logger name="ge.devel" level="INFO">
+    <logger name="ge.devel" level="DEBUG">
         <appender-ref ref="aopLog" />
-        <appender-ref ref="console" />
     </logger>
 
-    <logger name="org.springframework" level="DEBUG">
+    <logger name="org.springframework" level="INFO">
         <appender-ref ref="springLog" />
-        <appender-ref ref="console" />
     </logger>
 
-    <logger name="org.hibernate" level="DEBUG">
+    <logger name="eu.chargetime.ocpp" level="DEBUG">
         <appender-ref ref="hibernateLog" />
-        <appender-ref ref="console" />
     </logger>
 
     <root level="info">

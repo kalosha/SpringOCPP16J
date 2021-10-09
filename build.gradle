@@ -57,12 +57,10 @@ subprojects {
 }
 
 project('app') {
-//    apply plugin: 'java'
-//    apply plugin: 'application'
     apply plugin: 'org.springframework.boot'
 
     dependencies {
-        project(':ws:ws-impl')
+        implementation project(':ws:json-1.6:ws-impl')
 
         implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     }
@@ -74,7 +72,7 @@ project('app') {
     }
 }
 
-project('ws:ws-api') {
+project('ws:json-1.6:ws-api') {
     bootJar { enabled = false }
     jar { enabled = true }
 
@@ -85,12 +83,12 @@ project('ws:ws-api') {
     }
 }
 
-project('ws:ws-impl') {
+project('ws:json-1.6:ws-impl') {
     bootJar { enabled = false }
     jar { enabled = true }
 
     dependencies {
-        implementation project(':ws:ws-api')
+        implementation project(':ws:json-1.6:ws-api')
 
         implementation "org.springframework:spring-context:${springVersion}"
 

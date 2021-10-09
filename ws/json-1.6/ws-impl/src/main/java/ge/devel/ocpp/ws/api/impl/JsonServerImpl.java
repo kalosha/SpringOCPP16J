@@ -34,10 +34,10 @@ public class JsonServerImpl implements JsonServer {
     private ServerFirmwareManagementProfile firmwareManagementProfile;
 
 
-    @Value("${ge.devel.ocpp.server.host}")
+    @Value("${ge.devel.ocpp.json.server.host}")
     private String serverHost;
 
-    @Value("${ge.devel.ocpp.server.port}")
+    @Value("${ge.devel.ocpp.json.server.port}")
     private int serverPort;
 
     private final ServerCoreEventHandler serverCoreEventHandler;
@@ -65,6 +65,7 @@ public class JsonServerImpl implements JsonServer {
         this.coreProfile = new ServerCoreProfile(this.serverCoreEventHandler);
         this.firmwareManagementProfile = new ServerFirmwareManagementProfile(this.serverFirmwareManagementEventHandler);
 
+        log.info("#===> Staring JSON server[{}:{}]", this.serverHost, this.serverPort);
         server = new JSONServer(coreProfile);
         server.addFeatureProfile(this.firmwareManagementProfile);
         server.open(this.serverHost, this.serverPort, this.serverEvents);

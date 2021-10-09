@@ -17,7 +17,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = {ServerEvents.class, ServerEventHandler.class, ServerEventHandlerImpl.class},
-        properties = { "ge.devel.ocpp.server.endpoint=annotation", "ge.devel.ocpp.server.host=host"  })
+        properties = { "ge.devel.ocpp.json.server.endpoint=annotation", "ge.devel.ocpp.json.server.host=host"  })
 class ServerEventHandlerTest {
 
     @Value("${ge.devel.ocpp.server.host}")
