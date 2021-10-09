@@ -60,7 +60,7 @@ project('app') {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
-        implementation project(':ws:json-1.6:ws-impl')
+        implementation project(':json:json-1.6-impl')
 
         implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     }
@@ -72,7 +72,7 @@ project('app') {
     }
 }
 
-project('ws:json-1.6:ws-api') {
+project('json:json-1.6-api') {
     bootJar { enabled = false }
     jar { enabled = true }
 
@@ -83,12 +83,12 @@ project('ws:json-1.6:ws-api') {
     }
 }
 
-project('ws:json-1.6:ws-impl') {
+project('json:json-1.6-impl') {
     bootJar { enabled = false }
     jar { enabled = true }
 
     dependencies {
-        implementation project(':ws:json-1.6:ws-api')
+        implementation project(':json:json-1.6-api')
 
         implementation "org.springframework:spring-context:${springVersion}"
 
