@@ -1,10 +1,10 @@
-package ge.devel.ocpp.ws.api.impl;
+package ge.devel.ocpp.ws.json16.api.impl;
 
 import eu.chargetime.ocpp.ServerEvents;
 import eu.chargetime.ocpp.model.SessionInformation;
 import eu.chargetime.ocpp.model.core.ChargePointStatus;
-import ge.devel.ocpp.ws.api.ServerEventHandler;
-import ge.devel.ocpp.ws.api.decorators.SessionInformationDecorator;
+import ge.devel.ocpp.ws.json16.api.ServerEventHandler;
+import ge.devel.ocpp.ws.json16.api.decorators.SessionInformationDecorator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component("ServerEventHandler")
 public class ServerEventHandlerImpl extends AbstractRequestHandlerValidator implements ServerEventHandler, ServerEvents {
 
-    @Value("${ge.devel.ocpp.json.server.endpoint}")
+    @Value("${ge.devel.ocpp.json16.server.endpoint}")
     private String endpoint;
 
     private final Map<UUID, SessionInformationDecorator> sessions = new ConcurrentHashMap<>();

@@ -1,9 +1,9 @@
-package ge.devel.ocpp.ws.api.impl;
+package ge.devel.ocpp.ws.json16.api.impl;
 
 import eu.chargetime.ocpp.ServerEvents;
 import eu.chargetime.ocpp.model.SessionInformation;
 import eu.chargetime.ocpp.model.core.ChargePointStatus;
-import ge.devel.ocpp.ws.api.ServerEventHandler;
+import ge.devel.ocpp.ws.json16.api.ServerEventHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = {ServerEvents.class, ServerEventHandler.class, ServerEventHandlerImpl.class},
-        properties = { "ge.devel.ocpp.json.server.endpoint=annotation", "ge.devel.ocpp.json.server.host=host"  })
+        properties = { "ge.devel.ocpp.json16.server.endpoint=annotation", "ge.devel.ocpp.json16.server.host=host"  })
 class ServerEventHandlerTest {
 
     @Value("${ge.devel.ocpp.server.host}")

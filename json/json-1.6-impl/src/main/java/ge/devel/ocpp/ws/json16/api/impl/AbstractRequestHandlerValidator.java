@@ -1,4 +1,4 @@
-package ge.devel.ocpp.ws.api.impl;
+package ge.devel.ocpp.ws.json16.api.impl;
 
 import eu.chargetime.ocpp.model.Request;
 import lombok.extern.slf4j.Slf4j;

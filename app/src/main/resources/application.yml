@@ -20,12 +20,16 @@ spring:
 ge:
   devel:
     ocpp:
-      json:
+      json16:
         server:
           port: 8016
           host: 192.168.14.13
           endpoint: ocpp16j
-
+      soap16:
+        server:
+          port: 8016
+          host: 192.168.14.13
+          endpoint: ocpp16s
 
       interval:
         seconds:

@@ -1,4 +1,4 @@
-package ge.devel.ocpp.ws.api.impl;
+package ge.devel.ocpp.ws.json16.api.impl;
 
 
 import eu.chargetime.ocpp.feature.profile.ServerFirmwareManagementEventHandler;
@@ -6,8 +6,8 @@ import eu.chargetime.ocpp.model.firmware.DiagnosticsStatusNotificationConfirmati
 import eu.chargetime.ocpp.model.firmware.DiagnosticsStatusNotificationRequest;
 import eu.chargetime.ocpp.model.firmware.FirmwareStatusNotificationConfirmation;
 import eu.chargetime.ocpp.model.firmware.FirmwareStatusNotificationRequest;
-import ge.devel.ocpp.ws.api.ServerEventHandler;
-import ge.devel.ocpp.ws.api.decorators.SessionInformationDecorator;
+import ge.devel.ocpp.ws.json16.api.ServerEventHandler;
+import ge.devel.ocpp.ws.json16.api.decorators.SessionInformationDecorator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

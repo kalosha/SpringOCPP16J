@@ -1,7 +1,7 @@
-package ge.devel.ocpp.ws.api;
+package ge.devel.ocpp.ws.json16.api;
 
 import eu.chargetime.ocpp.model.core.ChargePointStatus;
-import ge.devel.ocpp.ws.api.decorators.SessionInformationDecorator;
+import ge.devel.ocpp.ws.json16.api.decorators.SessionInformationDecorator;
 
 import java.util.List;
 import java.util.Optional;

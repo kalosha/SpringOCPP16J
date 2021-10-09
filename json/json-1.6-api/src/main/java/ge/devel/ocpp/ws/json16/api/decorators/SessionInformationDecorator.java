@@ -1,4 +1,4 @@
-package ge.devel.ocpp.ws.api.decorators;
+package ge.devel.ocpp.ws.json16.api.decorators;
 
 import eu.chargetime.ocpp.model.SessionInformation;
 import eu.chargetime.ocpp.model.core.ChargePointStatus;

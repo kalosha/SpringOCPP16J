@@ -1,4 +1,4 @@
-package ge.devel.ocpp.ws.api.impl;
+package ge.devel.ocpp.ws.json16.api.impl;
 
 import eu.chargetime.ocpp.JSONServer;
 import eu.chargetime.ocpp.NotConnectedException;
@@ -14,7 +14,7 @@ import eu.chargetime.ocpp.model.core.RemoteStartTransactionRequest;
 import eu.chargetime.ocpp.model.core.ResetType;
 import eu.chargetime.ocpp.model.firmware.DiagnosticsStatus;
 import eu.chargetime.ocpp.model.firmware.FirmwareStatus;
-import ge.devel.ocpp.ws.api.JsonServer;
+import ge.devel.ocpp.ws.json16.api.Json16Server;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,18 +26,18 @@ import java.util.concurrent.CompletionStage;
 
 
 @Slf4j
-@Service("JsonServer")
-public class JsonServerImpl implements JsonServer {
+@Service("Json16Server")
+public class Json16ServerImpl implements Json16Server {
 
     private JSONServer server;
     private ServerCoreProfile coreProfile;
     private ServerFirmwareManagementProfile firmwareManagementProfile;
 
 
-    @Value("${ge.devel.ocpp.json.server.host}")
+    @Value("${ge.devel.ocpp.json16.server.host}")
     private String serverHost;
 
-    @Value("${ge.devel.ocpp.json.server.port}")
+    @Value("${ge.devel.ocpp.json16.server.port}")
     private int serverPort;
 
     private final ServerCoreEventHandler serverCoreEventHandler;
@@ -46,9 +46,9 @@ public class JsonServerImpl implements JsonServer {
 
     private final ServerEventHandlerImpl serverEvents;
 
-    public JsonServerImpl(ServerCoreEventHandler serverCoreEventHandler,
-                          ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler,
-                          ServerEventHandlerImpl serverEvents) {
+    public Json16ServerImpl(ServerCoreEventHandler serverCoreEventHandler,
+                            ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler,
+                            ServerEventHandlerImpl serverEvents) {
         this.serverCoreEventHandler = serverCoreEventHandler;
         this.serverFirmwareManagementEventHandler = serverFirmwareManagementEventHandler;
         this.serverEvents = serverEvents;
@@ -65,7 +65,7 @@ public class JsonServerImpl implements JsonServer {
         this.coreProfile = new ServerCoreProfile(this.serverCoreEventHandler);
         this.firmwareManagementProfile = new ServerFirmwareManagementProfile(this.serverFirmwareManagementEventHandler);
 
-        log.info("#===> Staring JSON server[{}:{}]", this.serverHost, this.serverPort);
+        log.info("#===> Staring JSON-1.6 server[{}:{}]", this.serverHost, this.serverPort);
         server = new JSONServer(coreProfile);
         server.addFeatureProfile(this.firmwareManagementProfile);
         server.open(this.serverHost, this.serverPort, this.serverEvents);

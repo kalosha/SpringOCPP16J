@@ -1,4 +1,4 @@
-package ge.devel.ocpp.ws.api;
+package ge.devel.ocpp.ws.json16.api;
 
 import eu.chargetime.ocpp.NotConnectedException;
 import eu.chargetime.ocpp.OccurenceConstraintException;
@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 import java.util.concurrent.CompletionStage;
 
-public interface JsonServer {
+public interface Json16Server {
     CompletionStage<Confirmation> clearCache(String cpName) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException;
     CompletionStage<Confirmation> clearCache(UUID sessionIndex) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException;
 
