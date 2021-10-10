@@ -6,6 +6,8 @@ import eu.chargetime.ocpp.feature.profile.ServerCoreProfile;
 import eu.chargetime.ocpp.feature.profile.ServerFirmwareManagementEventHandler;
 import eu.chargetime.ocpp.feature.profile.ServerFirmwareManagementProfile;
 import eu.chargetime.ocpp.model.Confirmation;
+import eu.chargetime.ocpp.model.core.GetConfigurationRequest;
+import eu.chargetime.ocpp.model.core.RemoteStartTransactionRequest;
 import eu.chargetime.ocpp.model.core.ResetType;
 import eu.chargetime.ocpp.model.firmware.DiagnosticsStatus;
 import eu.chargetime.ocpp.model.firmware.FirmwareStatus;
@@ -63,6 +65,7 @@ public class Soap16ServerImpl implements Soap16Server {
         this.firmwareManagementProfile = new ServerFirmwareManagementProfile(this.serverFirmwareManagementEventHandler);
 
         log.info("#===> Staring SOAP-1.6 server[{}:{}]", this.serverHost, this.serverPort);
+        System.setProperty("jakarta.xml.soap.SAAJMetaFactory", "com.sun.xml.messaging.saaj.soap.SAAJMetaFactoryImpl");
         server = new SOAPServer(coreProfile);
         server.addFeatureProfile(this.firmwareManagementProfile);
         server.open(this.serverHost, this.serverPort, this.serverEvents);
@@ -75,7 +78,8 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> clearCache(UUID sessionIndex) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        return this.server.send(sessionIndex,
+                this.coreProfile.createClearCacheRequest());
     }
 
     @Override
@@ -85,7 +89,9 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> getConfiguration(UUID sessionIndex, String[] keys) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        GetConfigurationRequest request = this.coreProfile.createGetConfigurationRequest();
+        request.setKey(keys);
+        return this.server.send(sessionIndex, request);
     }
 
     @Override
@@ -95,7 +101,8 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> resetService(UUID sessionIndex, ResetType type) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        return this.server.send(sessionIndex,
+                this.coreProfile.createResetRequest(type));
     }
 
     @Override
@@ -105,7 +112,9 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> startTransaction(UUID sessionIndex, Integer connectorId, String idTag) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        RemoteStartTransactionRequest request = this.coreProfile.createRemoteStartTransactionRequest(idTag);
+        request.setConnectorId(connectorId);
+        return this.server.send(sessionIndex, request);
     }
 
     @Override
@@ -115,7 +124,8 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> stopTransaction(UUID sessionIndex, Integer transactionId) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        return this.server.send(sessionIndex,
+                this.coreProfile.createRemoteStopTransactionRequest(transactionId));
     }
 
     @Override
@@ -125,7 +135,8 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> unlock(UUID sessionIndex, Integer connectorId) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        return this.server.send(sessionIndex,
+                this.coreProfile.createUnlockConnectorRequest(connectorId));
     }
 
     @Override
@@ -135,7 +146,8 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> getDiagnostics(UUID sessionIndex, String location) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        return this.server.send(sessionIndex,
+                this.firmwareManagementProfile.createGetDiagnosticsRequest(location));
     }
 
     @Override
@@ -145,7 +157,7 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> diagnosticsStatusNotification(UUID sessionIndex, DiagnosticsStatus status) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        throw new UnsupportedFeatureException();
     }
 
     @Override
@@ -155,7 +167,7 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> firmwareStatusNotification(UUID sessionIndex, FirmwareStatus status) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        throw new UnsupportedFeatureException();
     }
 
     @Override
@@ -165,6 +177,7 @@ public class Soap16ServerImpl implements Soap16Server {
 
     @Override
     public CompletionStage<Confirmation> updateFirmware(UUID sessionIndex, String location, ZonedDateTime retrieveDate) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        return this.server.send(sessionIndex,
+                this.firmwareManagementProfile.createUpdateFirmwareRequest(location, retrieveDate));
     }
 }

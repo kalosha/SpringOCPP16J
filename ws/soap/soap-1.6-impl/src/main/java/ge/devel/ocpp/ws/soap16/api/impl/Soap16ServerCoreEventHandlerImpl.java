@@ -30,7 +30,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public AuthorizeConfirmation handleAuthorizeRequest(UUID sessionIndex, AuthorizeRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("AuthorizeRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 
@@ -39,7 +39,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public BootNotificationConfirmation handleBootNotificationRequest(UUID sessionIndex, BootNotificationRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("BootNotificationRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 
@@ -48,7 +48,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public DataTransferConfirmation handleDataTransferRequest(UUID sessionIndex, DataTransferRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("DataTransferRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 
@@ -57,7 +57,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public HeartbeatConfirmation handleHeartbeatRequest(UUID sessionIndex, HeartbeatRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("HeartbeatRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 
@@ -66,7 +66,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public MeterValuesConfirmation handleMeterValuesRequest(UUID sessionIndex, MeterValuesRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("MeterValuesRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 
@@ -75,7 +75,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public StartTransactionConfirmation handleStartTransactionRequest(UUID sessionIndex, StartTransactionRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("StartTransactionRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 
@@ -84,7 +84,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public StatusNotificationConfirmation handleStatusNotificationRequest(UUID sessionIndex, StatusNotificationRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("StatusNotificationRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 
@@ -93,7 +93,7 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
 
     @Override
     public StopTransactionConfirmation handleStopTransactionRequest(UUID sessionIndex, StopTransactionRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("StopTransactionRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
         this.checkRequest(request);
 

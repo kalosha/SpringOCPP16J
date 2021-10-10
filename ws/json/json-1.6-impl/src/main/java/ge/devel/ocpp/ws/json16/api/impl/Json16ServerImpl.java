@@ -105,7 +105,6 @@ public class Json16ServerImpl implements Json16Server {
     public CompletionStage<Confirmation> startTransaction(final UUID sessionIndex, final Integer connectorId, final String idTag) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
         RemoteStartTransactionRequest request = this.coreProfile.createRemoteStartTransactionRequest(idTag);
         request.setConnectorId(connectorId);
-
         return this.server.send(sessionIndex, request);
     }
 
@@ -155,7 +154,7 @@ public class Json16ServerImpl implements Json16Server {
 
     @Override
     public CompletionStage<Confirmation> firmwareStatusNotification(final UUID sessionIndex, final FirmwareStatus status) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        throw new UnsupportedFeatureException();
     }
 
     @Override
@@ -165,7 +164,7 @@ public class Json16ServerImpl implements Json16Server {
 
     @Override
     public CompletionStage<Confirmation> diagnosticsStatusNotification(final UUID sessionIndex, final DiagnosticsStatus status) throws NotConnectedException, OccurenceConstraintException, UnsupportedFeatureException {
-        return null;
+        throw new UnsupportedFeatureException();
     }
 
     @Override

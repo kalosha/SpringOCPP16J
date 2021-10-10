@@ -123,7 +123,7 @@ class ServerEventHandlerTest {
 
         this.underTest.updateStatus(uuid, ChargePointStatus.Faulted);
 
-        assertEquals(ChargePointStatus.Faulted, this.underTest.getSessionInformationBySession(uuid).orElseThrow().getStatus());
+        assertEquals(ChargePointStatus.Faulted, this.underTest.getSessionInformationBySession(uuid).orElseThrow(RuntimeException::new).getStatus());
     }
 
 

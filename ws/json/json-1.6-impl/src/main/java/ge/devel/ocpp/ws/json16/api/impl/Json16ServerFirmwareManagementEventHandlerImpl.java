@@ -28,7 +28,7 @@ public class Json16ServerFirmwareManagementEventHandlerImpl extends AbstractRequ
 
     @Override
     public DiagnosticsStatusNotificationConfirmation handleDiagnosticsStatusNotificationRequest(final UUID sessionIndex, final DiagnosticsStatusNotificationRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("DiagnosticsStatusNotificationRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
 
         return new DiagnosticsStatusNotificationConfirmation();
@@ -36,7 +36,7 @@ public class Json16ServerFirmwareManagementEventHandlerImpl extends AbstractRequ
 
     @Override
     public FirmwareStatusNotificationConfirmation handleFirmwareStatusNotificationRequest(final UUID sessionIndex, final FirmwareStatusNotificationRequest request) {
-        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow();
+        SessionInformationDecorator info = this.serverEventHandler.getSessionInformationBySession(sessionIndex).orElseThrow(RuntimeException::new);
         log.info("FirmwareStatusNotificationRequest UUID = {} ChargePointIdentifier = {} request = {}", sessionIndex, info.getIdentity(), request);
 
         return new FirmwareStatusNotificationConfirmation();
