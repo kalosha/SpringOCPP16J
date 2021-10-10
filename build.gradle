@@ -60,7 +60,8 @@ project('app') {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
-        implementation project(':json:json-1.6-impl')
+        implementation project(':ws:json:json-1.6-impl')
+        implementation project(':ws:soap:soap-1.6-impl')
 
         implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     }
@@ -72,23 +73,74 @@ project('app') {
     }
 }
 
-project('json:json-1.6-api') {
+project('ws') {
     bootJar { enabled = false }
     jar { enabled = true }
 
     dependencies {
+
+        implementation "org.springframework:spring-context:${springVersion}"
+        implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+
         implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
         implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
         implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
     }
 }
 
-project('json:json-1.6-impl') {
+project('ws:json:json-1.6-api') {
     bootJar { enabled = false }
     jar { enabled = true }
 
     dependencies {
-        implementation project(':json:json-1.6-api')
+        implementation project(':ws')
+
+        implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
+        implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
+        implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
+    }
+}
+
+project('ws:json:json-1.6-impl') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+
+    dependencies {
+        implementation project(':ws')
+        implementation project(':ws:json:json-1.6-api')
+
+        implementation "org.springframework:spring-context:${springVersion}"
+
+        implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+
+        implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
+        implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
+        implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
+
+        testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    }
+}
+
+project('ws:soap:soap-1.6-api') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+
+    dependencies {
+        implementation project(':ws')
+
+        implementation group: 'eu.chargetime.ocpp', name: 'common', version: '1.0'
+        implementation group: 'eu.chargetime.ocpp', name: 'v1_6', version: '1.0.1'
+        implementation group: 'eu.chargetime.ocpp', name: 'OCPP-J', version: '1.0.1'
+    }
+}
+
+project('ws:soap:soap-1.6-impl') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+
+    dependencies {
+        implementation project(':ws')
+        implementation project(':ws:soap:soap-1.6-api')
 
         implementation "org.springframework:spring-context:${springVersion}"
 

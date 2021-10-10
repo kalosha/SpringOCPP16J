@@ -1,0 +1,37 @@
+server:
+  port: 9090
+
+
+spring:
+  application:
+    name: SpringBoot OCPP 1.6 JSON
+  banner:
+    location: banner.txt
+  profiles:
+    include: prod staging dev
+  messages:
+    encoding: UTF-8
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+
+ge:
+  devel:
+    ocpp:
+      json16:
+        server:
+          port: 8016
+          host: 192.168.14.13
+          endpoint: ocpp16j
+      soap16:
+        server:
+          port: 8016
+          host: 192.168.14.13
+          endpoint: ocpp16s
+
+      interval:
+        seconds:
+          heartbeat: 100
+
