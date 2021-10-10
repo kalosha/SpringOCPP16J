@@ -21,10 +21,10 @@ public class Soap16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
     @Value("${ge.devel.ocpp.interval.seconds.heartbeat}")
     private int heartbeatInterval;
 
-    @Qualifier("Soap16ServerEventHandler")
-    private ServerEventHandler serverEventHandler;
 
-    public Soap16ServerCoreEventHandlerImpl(ServerEventHandler serverEventHandler) {
+    private final   ServerEventHandler serverEventHandler;
+
+    public Soap16ServerCoreEventHandlerImpl(@Qualifier("Soap16ServerEventHandler") final ServerEventHandler serverEventHandler) {
         this.serverEventHandler = serverEventHandler;
     }
 

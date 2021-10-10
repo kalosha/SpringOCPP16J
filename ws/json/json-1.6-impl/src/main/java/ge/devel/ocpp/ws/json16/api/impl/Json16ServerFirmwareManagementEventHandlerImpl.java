@@ -19,10 +19,10 @@ import java.util.UUID;
 @Component("Json16ServerFirmwareManagementEventHandler")
 public class Json16ServerFirmwareManagementEventHandlerImpl extends AbstractRequestHandlerValidator implements ServerFirmwareManagementEventHandler {
 
-    @Qualifier("Json16ServerEventHandler")
-    private ServerEventHandler serverEventHandler;
 
-    public Json16ServerFirmwareManagementEventHandlerImpl(final ServerEventHandler serverEventHandler){
+    private final ServerEventHandler serverEventHandler;
+
+    public Json16ServerFirmwareManagementEventHandlerImpl(@Qualifier("Json16ServerEventHandler") final ServerEventHandler serverEventHandler){
         this.serverEventHandler = serverEventHandler;
     }
 

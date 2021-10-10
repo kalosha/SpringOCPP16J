@@ -21,10 +21,10 @@ public class Json16ServerCoreEventHandlerImpl extends AbstractRequestHandlerVali
     @Value("${ge.devel.ocpp.interval.seconds.heartbeat}")
     private int heartbeatInterval;
 
-    @Qualifier("Json16ServerEventHandler")
-    private ServerEventHandler serverEventHandler;
 
-    public Json16ServerCoreEventHandlerImpl(final ServerEventHandler serverEventHandler) {
+    private final ServerEventHandler serverEventHandler;
+
+    public Json16ServerCoreEventHandlerImpl(@Qualifier("Json16ServerEventHandler") final ServerEventHandler serverEventHandler) {
         this.serverEventHandler = serverEventHandler;
     }
 

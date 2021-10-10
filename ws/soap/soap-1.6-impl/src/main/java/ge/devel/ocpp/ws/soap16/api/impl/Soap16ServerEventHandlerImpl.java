@@ -23,10 +23,10 @@ public class Soap16ServerEventHandlerImpl extends AbstractRequestHandlerValidato
     @Value("${ge.devel.ocpp.soap16.server.endpoint}")
     private String endpoint;
 
-    @Qualifier("OcppServerEventHandler")
+
     private final OcppServerEventHandlerImpl ocppServer;
 
-    public Soap16ServerEventHandlerImpl(OcppServerEventHandlerImpl ocppServer) {
+    public Soap16ServerEventHandlerImpl(@Qualifier("OcppServerEventHandler") final OcppServerEventHandlerImpl ocppServer) {
         this.ocppServer = ocppServer;
         log.info("SOAPServerEvents initialized");
     }

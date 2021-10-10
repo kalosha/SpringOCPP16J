@@ -23,10 +23,10 @@ public class Json16ServerEventHandlerImpl extends AbstractRequestHandlerValidato
     @Value("${ge.devel.ocpp.json16.server.endpoint}")
     private String endpoint;
 
-    @Qualifier("OcppServerEventHandler")
+
     private final OcppServerEventHandlerImpl ocppServer;
 
-    public Json16ServerEventHandlerImpl(OcppServerEventHandlerImpl ocppServer) {
+    public Json16ServerEventHandlerImpl(@Qualifier("OcppServerEventHandler") final OcppServerEventHandlerImpl ocppServer) {
         this.ocppServer = ocppServer;
         log.info("JSONServerEvents initialized");
     }

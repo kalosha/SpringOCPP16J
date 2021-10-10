@@ -25,7 +25,6 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 import java.util.concurrent.CompletionStage;
 
-
 @Slf4j
 @Service("Json16Server")
 public class Json16ServerImpl implements Json16Server {
@@ -40,17 +39,17 @@ public class Json16ServerImpl implements Json16Server {
     @Value("${ge.devel.ocpp.json16.server.port}")
     private int serverPort;
 
-    @Qualifier("Json16ServerCoreEventHandler")
+
     private final ServerCoreEventHandler serverCoreEventHandler;
 
     private final ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler;
 
-    @Qualifier("Json16ServerEventHandler")
+
     private final Json16ServerEventHandlerImpl serverEvents;
 
-    public Json16ServerImpl(final ServerCoreEventHandler serverCoreEventHandler,
-                            final ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler,
-                            final Json16ServerEventHandlerImpl serverEvents) {
+    public Json16ServerImpl(@Qualifier("Json16ServerCoreEventHandler") final ServerCoreEventHandler serverCoreEventHandler,
+                            @Qualifier("Json16ServerFirmwareManagementEventHandler") final ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler,
+                            @Qualifier("Json16ServerEventHandler") final Json16ServerEventHandlerImpl serverEvents) {
         this.serverCoreEventHandler = serverCoreEventHandler;
         this.serverFirmwareManagementEventHandler = serverFirmwareManagementEventHandler;
         this.serverEvents = serverEvents;

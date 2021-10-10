@@ -13,6 +13,7 @@ import ge.devel.ocpp.ws.soap.api.Soap16Server;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -35,16 +36,16 @@ public class Soap16ServerImpl implements Soap16Server {
     @Value("${ge.devel.ocpp.soap16.server.port}")
     private int serverPort;
 
-    @Qualifier("Soap16ServerCoreEventHandler")
+
     private final ServerCoreEventHandler serverCoreEventHandler;
 
     private final ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler;
 
     private final Soap16ServerEventHandlerImpl serverEvents;
 
-    public Soap16ServerImpl(final ServerCoreEventHandler serverCoreEventHandler,
-                            final ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler,
-                            final Soap16ServerEventHandlerImpl serverEvents) {
+    public Soap16ServerImpl(@Qualifier("Soap16ServerCoreEventHandler") final ServerCoreEventHandler serverCoreEventHandler,
+                            @Qualifier("Soap16ServerFirmwareManagementEventHandler") final ServerFirmwareManagementEventHandler serverFirmwareManagementEventHandler,
+                            @Qualifier("Soap16ServerEventHandler") final Soap16ServerEventHandlerImpl serverEvents) {
         this.serverCoreEventHandler = serverCoreEventHandler;
         this.serverFirmwareManagementEventHandler = serverFirmwareManagementEventHandler;
         this.serverEvents = serverEvents;
