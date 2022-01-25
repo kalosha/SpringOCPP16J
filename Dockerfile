@@ -9,6 +9,6 @@ COPY ${JAR_FILE} appDir/application.jar
 #COPY application.yml application.yml
 
 ENV JVM_OPTS="-Xmx1024m -Xms512m"
-EXPOSE 9090 8016
+EXPOSE 9090 8016 7016
 
 CMD ["bash", "-c", "java -jar $JAVA_OPTS appDir/application.jar"]

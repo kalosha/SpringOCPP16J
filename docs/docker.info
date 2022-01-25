@@ -7,7 +7,7 @@ docker run --rm -it -p 9090:9090 -p 8016:8016 kalosha/spring_ocpp_16_j
 docker run --rm -it -p 9090:9090 -p 8016:8016 -e JAVA_OPTS="-Xmx100m" --name s-p kalosha/spring_ocpp_16_j
 
 # list of images
-docket ps
+docker ps
 
 # inspect image by name
 docker inspect {image-name}

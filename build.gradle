@@ -11,12 +11,13 @@ ext {
     springVersion = '5.3.9'
     springBootVersion = '2.5.4'
     lombokVersion = '1.18.20'
+    junitVersion = '4.12'
 }
 
 sonarqube {
     properties {
         property 'sonar.projectKey', 'SpringOCPP16J'
-        property 'sonar.login', 'c1341dbd968034424de9254b2300adc1daea4104'
+        property 'sonar.login', '1611cb987a1847718313ee7ce5408e33c665f941'
         property 'sonar.host.url', 'http://localhost:9000'
     }
 }
@@ -39,15 +40,15 @@ allprojects {
 }
 
 subprojects {
-    sourceCompatibility = 11
-    targetCompatibility = 11
+    sourceCompatibility = 8
+    targetCompatibility = 8
 
     dependencies {
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
         implementation "org.projectlombok:lombok:${lombokVersion}"
         testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-        testImplementation 'junit:junit:4.12'
+        testImplementation 'junit:junit:${junitVersion}'
     }
 
     tasks.withType(Test) {
@@ -62,6 +63,12 @@ project('app') {
     dependencies {
         implementation project(':ws:json:json-1.6-impl')
         implementation project(':ws:soap:soap-1.6-impl')
+
+        implementation group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
+        implementation group: 'javax.jws', name: 'javax.jws-api', version: '1.1'
+        implementation group: 'com.sun.xml.messaging.saaj', name: 'saaj-impl', version: '1.5.3'
+        implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '3.0.1'
+        implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '3.0.2'
 
         implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     }
