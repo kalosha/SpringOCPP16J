@@ -43,6 +43,17 @@ subprojects {
     targetCompatibility = 11
 
     dependencies {
+        constraints{
+            implementation("org.apache.logging.log4j:log4j-core")
+            implementation("org.apache.logging.log4j:log4j-api"){
+                version {
+                    strictly("[2.17, 3[")
+                    prefer("2.17.1")
+                }
+                because("CVE-2021-44228: Log4j vulnerable to remote code execution RCE")
+            }
+        }
+
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
         implementation "org.projectlombok:lombok:${lombokVersion}"
         testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
@@ -57,12 +68,10 @@ subprojects {
 }
 
 project('app') {
-//    apply plugin: 'java'
-//    apply plugin: 'application'
     apply plugin: 'org.springframework.boot'
 
     dependencies {
-        project(':ws:ws-impl')
+        implementation project(':ws:ws-impl')
 
         implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     }

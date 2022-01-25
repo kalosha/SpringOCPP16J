@@ -68,6 +68,7 @@ public class JsonServerImpl implements JsonServer {
         server = new JSONServer(coreProfile);
         server.addFeatureProfile(this.firmwareManagementProfile);
         server.open(this.serverHost, this.serverPort, this.serverEvents);
+        log.info("OCCP 1.6J server started [{}:{}]", this.serverHost, this.serverPort);
     }
 
 
